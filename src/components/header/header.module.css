@@ -1,0 +1,22 @@
+.header {
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.18);
+    width: 100vw;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    z-index: 100;
+    justify-content: center;
+}
+
+.header_content {
+    width: calc(100vw - 80px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    height: 40px;
+}
