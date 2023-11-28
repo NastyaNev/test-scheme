@@ -6,12 +6,9 @@ import Button from "../button/button";
 function Header() {
   return (
     <header className={styles.header}>
-        <div className={styles.header_content}>
-      <img className={styles.logo} src={logo} alt="logo" />
-      <div className={styles.button_section}>
-      <Button buttonText="Add post" />
-
-      </div>
+      <div className={styles.header_content}>
+        <img className={styles.logo} src={logo} alt="logo" />
+        <Button buttonText="Add post" />
       </div>
     </header>
   );

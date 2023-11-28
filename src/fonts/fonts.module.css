@@ -33,3 +33,10 @@
     font-weight: 300;
     font-style: italic;
 }
+
+.regular {
+    font-family: 'Montserrat';
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
