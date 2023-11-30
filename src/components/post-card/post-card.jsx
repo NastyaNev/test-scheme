@@ -4,34 +4,32 @@ import fontStyles from "../../fonts/fonts.module.css";
 import trash from "../../images/trash.svg";
 import comments from "../../images/comment-dots.svg";
 import edit from "../../images/pen-square.svg";
-import starInactive from "../../images/star_inactive.svg";
-import starInactiveHover from "../../images/star_inactive_hover.svg";
-import starActiveHover from "../../images/star_active_hover.svg";
+import star from "../../images/star.svg";
 import starActive from "../../images/star_active.svg";
+import { useSelector } from "react-redux";
 
-function PostCard() {
-  const [isHovered, setIsHovered] = useState(false);
-  const handleHover = () => {
-    setIsHovered(!isHovered);
-  };
+function PostCard({ post }) {
+  // const [isHovered, setIsHovered] = useState(false);
+  // const handleHover = () => {
+  //   setIsHovered(!isHovered);
+  // };
+
+  const users = useSelector((state) => state.users.array);
+
+  const userInfo = users.find((i) => i.id === post.userId);
 
   return (
     <div className={styles.card_container}>
       <div className={styles.name_container}>
         <p className={`${fontStyles.light_italic} ${styles.name}`}>
-          Allan Carter
+        {userInfo.name}
         </p>
         <input type="checkbox" name="" id="" value="" />
       </div>
       <h3 className={`${fontStyles.bold} ${styles.post_title}`}>
-        This is post tiltle
+        {post.title}
       </h3>
-      <p className={styles.post_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae
-        magni dolor rerum blanditiis voluptate animi optio aliquid consequuntur
-        enim veritatis nihil magnam, aut nam perspiciatis nulla, rem iste dolore
-        dolorum!
-      </p>
+      <p className={styles.post_text}>{post.body}</p>
       {/* <span className={`${fontStyles.bold} ${styles.span_button}`}>
         Read more
       </span> */}
@@ -39,23 +37,24 @@ function PostCard() {
         <li>
           <ul className={styles.main_icons_container}>
             <li>
-              <img src={comments} alt="comments" className={styles.icon_main} />
+              <img src={comments} alt="comments" className={styles.icon} />
             </li>
             <li>
-              <img src={edit} alt="edit" className={styles.icon_main} />
+              <img src={edit} alt="edit" className={styles.icon} />
             </li>
             <li>
-              <img src={trash} alt="trash" className={styles.icon_main} />
+              <img src={trash} alt="trash" className={styles.icon} />
             </li>
           </ul>
         </li>
         <li>
           <img
-            src={isHovered ? starInactiveHover : starInactive}
-            onMouseEnter={handleHover}
-            onMouseLeave={handleHover}
+            src={star}
+            // {isHovered ? starInactiveHover : starInactive}
+            // onMouseEnter={handleHover}
+            // onMouseLeave={handleHover}
             alt="favorite"
-            className={styles.icon_favorite}
+            className={styles.icon}
           />
         </li>
       </ul>
