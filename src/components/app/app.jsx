@@ -13,9 +13,11 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-      dispatch(getNames());
-      dispatch(getItems());
+    dispatch(getNames());
+    dispatch(getItems());
   }, []);
+
+  const handleClick = (e) => console.log(e.target.textContent)
 
   return (
     <body className={styles.page}>
@@ -38,7 +40,9 @@ function App() {
           <ul
             className={`${styles.quantity_container} ${fontStyles.light_italic}`}
           >
-            <li className={styles.quantity}>10</li>
+            <li className={styles.quantity} onClick={handleClick}>
+              10
+            </li>
             <li className={styles.quantity}>20</li>
             <li className={styles.quantity}>50</li>
             <li className={styles.quantity}>100</li>

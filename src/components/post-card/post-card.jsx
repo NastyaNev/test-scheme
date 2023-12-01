@@ -13,10 +13,10 @@ function PostCard({ post }) {
   // const handleHover = () => {
   //   setIsHovered(!isHovered);
   // };
-
+  
   const users = useSelector((state) => state.users.array);
 
-  const userInfo = users.find((i) => i.id === post.userId);
+  const userInfo = users.find((i) => i.id === post.userId) || {};
 
   return (
     <div className={styles.card_container}>
