@@ -1,26 +1,38 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../header/header";
 import Sort from "../sort/sort";
 import Filters from "../filters/filters";
 import styles from "./app.module.css";
-import TableBody from "../table-body/table-body";
 import fontStyles from "../../fonts/fonts.module.css";
 import { useDispatch } from "react-redux";
 import { getItems, getNames } from "../../services/actions/actions";
 import { useSelector } from "react-redux";
+import Pagination from "../pagination/pagination";
+import AmountOnPage from "../pagination/amount-on-page/amount-on-page";
+import Posts from "../posts/posts";
 
 function App() {
   const dispatch = useDispatch();
+  const posts = useSelector((state) => state.posts.array);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(10);
 
   useEffect(() => {
     dispatch(getNames());
     dispatch(getItems());
   }, []);
 
-  const handleClick = (e) => console.log(e.target.textContent)
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = (pageNumber) => {setCurrentPage(pageNumber)}
+
 
   return (
-    <body className={styles.page}>
+    <div className={styles.page}>
+    {/* <body > */}
       <Header />
       <main className={styles.main}>
         <ul className={styles.table_header}>
@@ -37,21 +49,13 @@ function App() {
             </label>
             <input type="checkbox" name="" id="" value="choose" />
           </div>
-          <ul
-            className={`${styles.quantity_container} ${fontStyles.light_italic}`}
-          >
-            <li className={styles.quantity} onClick={handleClick}>
-              10
-            </li>
-            <li className={styles.quantity}>20</li>
-            <li className={styles.quantity}>50</li>
-            <li className={styles.quantity}>100</li>
-            <li className={styles.quantity}>all</li>
-          </ul>
+          <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} />
+          <AmountOnPage setPostsPerPage={setPostsPerPage} posts={posts} />
         </div>
-        <TableBody />
+        <Posts posts={currentPosts} />
       </main>
-    </body>
+    {/* </body> */}
+    </div>
   );
 }
 

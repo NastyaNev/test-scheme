@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./post-card.module.css";
+import styles from "./post.module.css";
 import fontStyles from "../../fonts/fonts.module.css";
 import trash from "../../images/trash.svg";
 import comments from "../../images/comment-dots.svg";
@@ -8,7 +8,7 @@ import star from "../../images/star.svg";
 import starActive from "../../images/star_active.svg";
 import { useSelector } from "react-redux";
 
-function PostCard({ post }) {
+function Post({ post }) {
   // const [isHovered, setIsHovered] = useState(false);
   // const handleHover = () => {
   //   setIsHovered(!isHovered);
@@ -22,7 +22,7 @@ function PostCard({ post }) {
     <div className={styles.card_container}>
       <div className={styles.name_container}>
         <p className={`${fontStyles.light_italic} ${styles.name}`}>
-        {userInfo.name}
+        {`${post.id} ${userInfo.name}`}
         </p>
         <input type="checkbox" name="" id="" value="" />
       </div>
@@ -62,4 +62,4 @@ function PostCard({ post }) {
   );
 }
 
-export default PostCard;
+export default Post;

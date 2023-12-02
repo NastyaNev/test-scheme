@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import PostCard from "../post-card/post-card";
-import styles from "./table-body.module.css";
-import { useSelector } from "react-redux";
+import Post from "../post/post";
+import styles from "./posts.module.css";
 
-function TableBody() {
-  const posts = useSelector((state) => state.posts.array);
+function Posts({ posts }) {
   // const postsAmount = posts.slice(0, amount);
   // const amount = e.target.value;
 
@@ -16,10 +14,10 @@ function TableBody() {
   return (
     <ul className={styles.cards_conrtainer}>
       {posts.map((post) => (
-        <PostCard key={post.id} post={post} />
+        <Post key={post.id} post={post} />
       ))}
     </ul>
   );
 }
 
-export default TableBody;
+export default Posts;
