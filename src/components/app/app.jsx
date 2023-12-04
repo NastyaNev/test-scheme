@@ -16,7 +16,7 @@ function App() {
   const posts = useSelector((state) => state.posts.array);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(10);
+  const [postsPerPage, setPostsPerPage] = useState("10");
 
   useEffect(() => {
     dispatch(getNames());
@@ -27,12 +27,19 @@ function App() {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
-  const paginate = (pageNumber) => {setCurrentPage(pageNumber)}
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
+  const setPosts = (newPostsPerPage) => {
+    if (newPostsPerPage != postsPerPage) {
+      setCurrentPage(1);
+    }
+    setPostsPerPage(newPostsPerPage);
+  };
 
   return (
     <div className={styles.page}>
-    {/* <body > */}
       <Header />
       <main className={styles.main}>
         <ul className={styles.table_header}>
@@ -49,12 +56,22 @@ function App() {
             </label>
             <input type="checkbox" name="" id="" value="choose" />
           </div>
-          <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} />
-          <AmountOnPage setPostsPerPage={setPostsPerPage} posts={posts} />
+          <Pagination
+            postsPerPage={postsPerPage}
+            totalPosts={posts.length}
+            paginate={paginate}
+            currentPage={currentPage}
+          />
+          <AmountOnPage
+            setPostsPerPage={setPosts}
+            posts={posts}
+            postsPerPage={postsPerPage}
+            currentPage={currentPage}
+            paginate={paginate}
+          />
         </div>
         <Posts posts={currentPosts} />
       </main>
-    {/* </body> */}
     </div>
   );
 }
