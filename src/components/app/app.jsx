@@ -16,26 +16,38 @@ function App() {
   const posts = useSelector((state) => state.posts.array);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState("10");
+  const [postsPerPage, setPostsPerPage] = useState(10);
 
   useEffect(() => {
     dispatch(getNames());
     dispatch(getItems());
+    const currentPageStr = localStorage.getItem("currentPage");
+    const postsPerPageStr = localStorage.getItem("postsPerPage");
+    if (currentPageStr) {
+      setCurrentPage(Number(currentPageStr));
+    }
+    if (postsPerPageStr) {
+      setPostsPerPage(Number(postsPerPageStr));
+    }
   }, []);
 
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const actualPostsPerPage = postsPerPage == -1 ? posts.length : postsPerPage;
+  const indexOfLastPost = currentPage * actualPostsPerPage;
+  const indexOfFirstPost = indexOfLastPost - actualPostsPerPage;
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
+    localStorage.setItem("currentPage", pageNumber);
   };
 
   const setPosts = (newPostsPerPage) => {
     if (newPostsPerPage != postsPerPage) {
       setCurrentPage(1);
+      localStorage.setItem("currentPage", 1);
     }
     setPostsPerPage(newPostsPerPage);
+    localStorage.setItem("postsPerPage", newPostsPerPage);
   };
 
   return (
@@ -57,7 +69,7 @@ function App() {
             <input type="checkbox" name="" id="" value="choose" />
           </div>
           <Pagination
-            postsPerPage={postsPerPage}
+            postsPerPage={actualPostsPerPage}
             totalPosts={posts.length}
             paginate={paginate}
             currentPage={currentPage}

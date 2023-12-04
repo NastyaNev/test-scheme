@@ -22,7 +22,9 @@ function Pagination({ postsPerPage, totalPosts, paginate, currentPage }) {
           {pageNumbers.map((number) => (
             <li key={number}>
               <a
-                onClick={() => paginate(number)}
+                onClick={() => {
+                  paginate(number);
+                }}
                 href="#"
                 className={
                   number === currentPage
