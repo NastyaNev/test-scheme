@@ -15,12 +15,14 @@ function App() {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts.array);
 
+  const [postsArray, setPostsArray] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
 
   useEffect(() => {
     dispatch(getNames());
     dispatch(getItems());
+
     const currentPageStr = localStorage.getItem("currentPage");
     const postsPerPageStr = localStorage.getItem("postsPerPage");
     if (currentPageStr) {
@@ -31,10 +33,15 @@ function App() {
     }
   }, []);
 
-  const actualPostsPerPage = postsPerPage == -1 ? posts.length : postsPerPage;
+  useEffect(() => {
+    setPostsArray(posts);
+  }, [posts]);
+
+  const actualPostsPerPage =
+    postsPerPage == -1 ? postsArray.length : postsPerPage;
   const indexOfLastPost = currentPage * actualPostsPerPage;
   const indexOfFirstPost = indexOfLastPost - actualPostsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = postsArray.slice(indexOfFirstPost, indexOfLastPost);
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -55,7 +62,11 @@ function App() {
       <Header />
       <main className={styles.main}>
         <ul className={styles.table_header}>
-          <Filters />
+          <Filters
+            setPostsArray={setPostsArray}
+            posts={posts}
+            setCurrentPage={setCurrentPage}
+          />
           <Sort />
         </ul>
         <div className={styles.choose_line_container}>
@@ -70,7 +81,7 @@ function App() {
           </div>
           <Pagination
             postsPerPage={actualPostsPerPage}
-            totalPosts={posts.length}
+            totalPosts={postsArray.length}
             paginate={paginate}
             currentPage={currentPage}
           />

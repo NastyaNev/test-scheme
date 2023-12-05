@@ -9,12 +9,14 @@ import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import postsReducer from './services/reducers/postsSlice';
 import usersReducer from './services/reducers/usersSlice';
+import favoritesReducer from './services/reducers/favoritesSlice';
 
 
 export const store = configureStore({
   reducer: {
     posts: postsReducer,
-    users: usersReducer
+    users: usersReducer,
+    favorites: favoritesReducer,
   }
 })
 
