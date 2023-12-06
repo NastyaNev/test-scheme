@@ -1,20 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./filters.module.css";
 import fontStyles from "../../fonts/fonts.module.css";
 import { useSelector } from "react-redux";
 
-function Filters({ setPostsArray, posts, setCurrentPage }) {
-  // if (document.getElementById("favorites")?.checked) {
-  //   console.log("checked");
-  // } else {
-  //   console.log("not checked");
-  // }
+function Filters({ setPostsArray, posts, setCurrentPage, postsArray }) {
   const favoritePosts = [];
   const favorites = useSelector((state) => state.favorites.ids);
 
+  const [filterByTitle, setFilterByTitle] = useState("");
+
+  const filteredByTitle = postsArray.filter((i) =>
+    i.title.includes(filterByTitle)
+  );
+
   const handleClick = (e) => {
     if (e.target.checked) {
-      posts.forEach((i) => {
+      postsArray.forEach((i) => {
         if (favorites.includes(i.id)) {
           favoritePosts.push(i);
           setPostsArray(favoritePosts);
@@ -22,8 +23,8 @@ function Filters({ setPostsArray, posts, setCurrentPage }) {
         }
       });
     } else {
-      setPostsArray(posts);
-      setCurrentPage(1);
+        setPostsArray(posts);
+        setCurrentPage(1);
     }
   };
 
@@ -37,17 +38,29 @@ function Filters({ setPostsArray, posts, setCurrentPage }) {
           <button className={fontStyles.regular}>User name</button>
         </li>
         <li>
-          <input className={fontStyles.regular} placeholder="Title"></input>
+          <input
+            className={fontStyles.regular}
+            placeholder="Title"
+            type="search"
+            value={filterByTitle}
+            onChange={(e) => {
+              setFilterByTitle(e.target.value);
+              if (e.target.value === "") {
+                setPostsArray(posts);
+              } else {
+                setPostsArray(filteredByTitle);
+              }
+            }}
+          ></input>
         </li>
         <li className={styles.favorites_container}>
-          <label for="favorites">Favorite</label>
+          <label htmlFor="favorites">Favorite</label>
           <input
             type="checkbox"
             name="favorites"
             id="favorites"
             value="favorites"
             onClick={handleClick}
-            favoritePosts={favoritePosts}
             className={styles.favorites_checkbox}
           />
         </li>

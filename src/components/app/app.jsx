@@ -66,6 +66,7 @@ function App() {
             setPostsArray={setPostsArray}
             posts={posts}
             setCurrentPage={setCurrentPage}
+            postsArray={postsArray}
           />
           <Sort />
         </ul>
@@ -73,11 +74,11 @@ function App() {
           <div className={styles.choose_container}>
             <label
               className={`${styles.choose_header} ${fontStyles.light_italic}`}
-              for="choose"
+              htmlFor="choose"
             >
               -choose
             </label>
-            <input type="checkbox" name="" id="" value="choose" />
+            <input type="checkbox" name="choose" id="choose" value="choose" />
           </div>
           <Pagination
             postsPerPage={actualPostsPerPage}
