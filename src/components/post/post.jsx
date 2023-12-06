@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import { setToFavorites } from "../../services/reducers/favoritesSlice";
 import { useDispatch } from "react-redux";
 
-function Post({ post }) {
+function Post({ post, setPostIsChecked, postIsChecked }) {
   const dispatch = useDispatch();
 
   const users = useSelector((state) => state.users.array);
@@ -39,7 +39,14 @@ function Post({ post }) {
             {userInfo.name}
           </p>
         </div>
-        <input type="checkbox" name="" id="" value="" />
+        <input
+          type="checkbox"
+          name="post_checkbox"
+          id="post_checkbox"
+          value="post_checkbox"
+          checked={postIsChecked}
+          onClick={(e) => e.target.checked ? setPostIsChecked(true) : setPostIsChecked(false)}
+        />
       </div>
       <h3 className={`${fontStyles.bold} ${styles.post_title}`}>
         {post.title}

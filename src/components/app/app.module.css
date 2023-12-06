@@ -30,19 +30,6 @@
     position: relative;
 }
 
-.choose_container {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    z-index: 2;
-}
-
-.choose_header {
-    text-transform: uppercase;
-    padding: 0;
-    margin: 0;
-}
-
 @media (max-width: 1390px) {
     .choose_line_container {
         flex-direction: column;

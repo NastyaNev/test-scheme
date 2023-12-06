@@ -21,7 +21,6 @@
     inset: 0;
     z-index: 149;
     background: radial-gradient(circle farthest-corner at 0% 0%, white 5%, #92e4e6, #4ca1af 35%);
-
     opacity: 0;
     transition: opacity 0.25s linear;
     margin: 0;

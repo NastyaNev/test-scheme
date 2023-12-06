@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import Pagination from "../pagination/pagination";
 import AmountOnPage from "../pagination/amount-on-page/amount-on-page";
 import Posts from "../posts/posts";
+import ChooseAll from "../choose-all/choose-all";
 
 function App() {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ function App() {
   const [postsArray, setPostsArray] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
+  const [postIsChecked, setPostIsChecked] = useState(false);
 
   useEffect(() => {
     dispatch(getNames());
@@ -71,15 +73,7 @@ function App() {
           <Sort />
         </ul>
         <div className={styles.choose_line_container}>
-          <div className={styles.choose_container}>
-            <label
-              className={`${styles.choose_header} ${fontStyles.light_italic}`}
-              htmlFor="choose"
-            >
-              -choose
-            </label>
-            <input type="checkbox" name="choose" id="choose" value="choose" />
-          </div>
+          <ChooseAll setPostIsChecked={setPostIsChecked} />
           <Pagination
             postsPerPage={actualPostsPerPage}
             totalPosts={postsArray.length}
@@ -94,7 +88,7 @@ function App() {
             paginate={paginate}
           />
         </div>
-        <Posts posts={currentPosts} />
+        <Posts posts={currentPosts} setPostIsChecked={setPostIsChecked} postIsChecked={postIsChecked} />
       </main>
     </div>
   );

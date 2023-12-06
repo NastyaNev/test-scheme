@@ -1,0 +1,57 @@
+.menu_container {
+    display: flex;
+}
+
+.menu_container_inactive {
+    display: none;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9;
+}
+
+.user_name_button {
+    position: relative;
+    z-index: 10;
+}
+
+.names_menu {
+    position: absolute;
+    background-color: white;
+    list-style: none;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 15px;
+    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.18);
+    border-radius: 2px;
+    padding: 15px;
+    margin: 8px 0 0 20px;
+}
+
+.all {
+    text-transform: uppercase;
+}
+
+.name {
+    text-decoration: none;
+    color: black;
+    padding: 4px 15px;
+    display: flex;
+    margin-left: -15px;
+    width: 100%;
+}
+
+.name:hover {
+    background-color: #4ca1af;
+}
+
+.name:hover {
+    color: white;
+}

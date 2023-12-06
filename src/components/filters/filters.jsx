@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./filters.module.css";
 import fontStyles from "../../fonts/fonts.module.css";
 import { useSelector } from "react-redux";
+import NameFilter from "./name-filter/name-filter";
 
 function Filters({ setPostsArray, posts, setCurrentPage, postsArray }) {
   const favoritePosts = [];
@@ -34,9 +35,7 @@ function Filters({ setPostsArray, posts, setCurrentPage, postsArray }) {
         filter by:
       </p>
       <ul className={styles.filters}>
-        <li>
-          <button className={fontStyles.regular}>User name</button>
-        </li>
+        <NameFilter postsArray={postsArray} setPostsArray={setPostsArray} posts={posts} />
         <li>
           <input
             className={fontStyles.regular}
