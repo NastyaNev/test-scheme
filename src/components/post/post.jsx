@@ -30,11 +30,16 @@ function Post({ post }) {
 
   const handleStarClick = () => {
     dispatch(setToFavorites(post.id));
-    starIsActive === star ? setStarIsActive(starActive) : setStarIsActive(star);
+    if (starIsActive === star) {
+      setStarIsActive(starActive);
+    } else {
+      setStarIsActive(star);
+    }
   };
 
-  const handlePostCheckboxClick = () => {
+  const handlePostCheckboxClick = (e) => {
     dispatch(setPostChecked(post.id));
+    e.target.title = "unchoose post";
   };
 
   return (
@@ -54,6 +59,7 @@ function Post({ post }) {
           name="post_checkbox"
           id="post_checkbox"
           value="post_checkbox"
+          title="choose post"
           onChange={handlePostCheckboxClick}
           checked={choose.postsChecked.includes(post.id)}
         />
@@ -70,17 +76,32 @@ function Post({ post }) {
           <ul className={styles.main_icons_container}>
             <li>
               <button className={styles.post_button}>
-                <img src={comments} alt="comments" className={styles.icon} />
+                <img
+                  src={comments}
+                  alt="comments"
+                  className={styles.icon}
+                  title="open comments"
+                />
               </button>
             </li>
             <li>
               <button className={styles.post_button}>
-                <img src={edit} alt="edit" className={styles.icon} />
+                <img
+                  src={edit}
+                  alt="edit"
+                  className={styles.icon}
+                  title="edit post"
+                />
               </button>
             </li>
             <li>
               <button className={styles.post_button}>
-                <img src={trash} alt="trash" className={styles.icon} />
+                <img
+                  src={trash}
+                  alt="trash"
+                  className={styles.icon}
+                  title="delete post"
+                />
               </button>
             </li>
           </ul>
@@ -92,9 +113,6 @@ function Post({ post }) {
           >
             <img
               src={starIsActive}
-              // {isHovered ? starInactiveHover : starInactive}
-              // onMouseEnter={handleHover}
-              // onMouseLeave={handleHover}
               alt="favorite"
               className={styles.icon}
             />

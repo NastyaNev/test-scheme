@@ -46,6 +46,7 @@ function Filters({ setPostsArray, posts, setCurrentPage, postsArray }) {
             placeholder="Title"
             type="search"
             value={filterByTitle}
+            title="start to type"
             onChange={(e) => {
               setFilterByTitle(e.target.value);
               if (e.target.value === "") {
@@ -61,6 +62,7 @@ function Filters({ setPostsArray, posts, setCurrentPage, postsArray }) {
           <input
             type="checkbox"
             name="favorites"
+            title="added to Favorites"
             id="favorites"
             value="favorites"
             onClick={handleClick}

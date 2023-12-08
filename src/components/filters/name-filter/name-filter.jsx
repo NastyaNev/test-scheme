@@ -30,6 +30,7 @@ function NameFilter({ posts, postsArray, setPostsArray }) {
     <li>
       <button
         className={`${fontStyles.regular} ${styles.user_name_button}`}
+        title="click to choose"
         onClick={() => {
           setOpen(!open);
           setPostsArray(posts);

@@ -14,8 +14,10 @@ function ChooseAll({ postsArray }) {
   const handleChooseAllCheckboxClick = (e) => {
     if (e.target.checked) {
       dispatch(setAllChecked(postsArray));
+      e.target.title="unchoose all posts";
     } else {
       dispatch(setNotChecked());
+      e.target.title="choose all posts";
     }
   };
 
@@ -37,6 +39,7 @@ function ChooseAll({ postsArray }) {
           name="choose"
           id="choose"
           value="choose"
+          title='choose all posts'
           className={styles.choose_checkbox}
           onClick={handleChooseAllCheckboxClick}
         />
@@ -53,6 +56,7 @@ function ChooseAll({ postsArray }) {
             href="#"
             className={`${styles.hidden_button} ${fontStyles.light_italic}`}
             onClick={handleHiddenButtonClick}
+            title="add chose to Favorites"
           >
             Add to favorites
           </a>
@@ -62,6 +66,7 @@ function ChooseAll({ postsArray }) {
             href="#"
             className={`${styles.hidden_button} ${fontStyles.light_italic}`}
             onClick={handleHiddenButtonClick}
+            title="delete chose"
           >
             Delete
           </a>
