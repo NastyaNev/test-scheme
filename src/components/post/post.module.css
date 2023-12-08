@@ -35,6 +35,13 @@
     font-size: 14px;
 }
 
+.post_checkbox {
+    margin: 0;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
 .post_title {
     margin: 7px 0 0 0;
     padding: 0;
@@ -101,12 +108,16 @@
     height: 25px;
 }
 
-.button {
+.post_button {
     padding: 0;
     margin: 0;
     border: none;
     background: none;
     height: 25px;
+}
+
+.favotites_button {
+    display: flex;
 }
 
 .icon {

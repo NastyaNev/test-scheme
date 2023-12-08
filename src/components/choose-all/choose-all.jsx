@@ -1,18 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./choose-all.module.css";
 import fontStyles from "../../fonts/fonts.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setAllChecked,
+  setNotChecked,
+} from "../../services/reducers/chooseSlice";
 
-function ChooseAll({ setPostIsChecked }) {
-  const [hidden, setHidden] = useState(true);
+function ChooseAll({ postsArray }) {
+  const dispatch = useDispatch();
+  const choose = useSelector((state) => state.choose);
 
-  const handleClick = (e) => {
+  const handleChooseAllCheckboxClick = (e) => {
     if (e.target.checked) {
-      setHidden(false);
-      setPostIsChecked(true);
+      dispatch(setAllChecked(postsArray));
     } else {
-      setHidden(true);
-      setPostIsChecked(false);
+      dispatch(setNotChecked());
     }
+  };
+
+  const handleHiddenButtonClick = (e) => {
+    e.target.classList.add(styles.hidden_button_active);
   };
 
   return (
@@ -30,14 +38,21 @@ function ChooseAll({ setPostIsChecked }) {
           id="choose"
           value="choose"
           className={styles.choose_checkbox}
-          onClick={handleClick}
+          onClick={handleChooseAllCheckboxClick}
         />
       </div>
-      <ul className={hidden ? styles.hidden_buttons_container_inactive : styles.hidden_buttons_container}>
+      <ul
+        className={
+          choose.hiddenMenu
+            ? styles.hidden_buttons_container_inactive
+            : styles.hidden_buttons_container
+        }
+      >
         <li>
           <a
             href="#"
             className={`${styles.hidden_button} ${fontStyles.light_italic}`}
+            onClick={handleHiddenButtonClick}
           >
             Add to favorites
           </a>
@@ -46,6 +61,7 @@ function ChooseAll({ setPostIsChecked }) {
           <a
             href="#"
             className={`${styles.hidden_button} ${fontStyles.light_italic}`}
+            onClick={handleHiddenButtonClick}
           >
             Delete
           </a>

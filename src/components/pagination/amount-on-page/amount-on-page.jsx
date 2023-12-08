@@ -6,9 +6,7 @@ function AmountOnPage({ setPostsPerPage, postsPerPage }) {
   const amauntOnPage = [10, 20, 50, 100, -1];
 
   const handleClick = (amount) => {
-    setPostsPerPage(
-      amount
-    );
+    setPostsPerPage(amount);
   };
 
   const activeStyle = (amount) => {
@@ -30,8 +28,12 @@ function AmountOnPage({ setPostsPerPage, postsPerPage }) {
         >
           {amauntOnPage.map((amount) => (
             <li key={amount}>
-              <a onClick={() => handleClick(amount)} href="#" className={activeStyle(amount)}>
-                {amount === -1 ? 'all' : amount}
+              <a
+                onClick={() => handleClick(amount)}
+                href="#"
+                className={activeStyle(amount)}
+              >
+                {amount === -1 ? "all" : amount}
               </a>
             </li>
           ))}

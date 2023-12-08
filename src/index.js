@@ -10,6 +10,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import postsReducer from './services/reducers/postsSlice';
 import usersReducer from './services/reducers/usersSlice';
 import favoritesReducer from './services/reducers/favoritesSlice';
+import chooseReducer from './services/reducers/chooseSlice';
 
 
 export const store = configureStore({
@@ -17,6 +18,7 @@ export const store = configureStore({
     posts: postsReducer,
     users: usersReducer,
     favorites: favoritesReducer,
+    choose: chooseReducer
   }
 })
 

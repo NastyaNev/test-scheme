@@ -9,23 +9,32 @@ import starActive from "../../images/star_active.svg";
 import { useSelector } from "react-redux";
 import { setToFavorites } from "../../services/reducers/favoritesSlice";
 import { useDispatch } from "react-redux";
+import { setPostChecked } from "../../services/reducers/chooseSlice";
 
-function Post({ post, setPostIsChecked, postIsChecked }) {
+function Post({ post }) {
   const dispatch = useDispatch();
 
   const users = useSelector((state) => state.users.array);
   const userInfo = users.find((i) => i.id === post.userId) || {};
   const favorites = useSelector((state) => state.favorites.ids);
 
-  const [isActive, setIsActive] = useState(star);
+  const choose = useSelector((state) => state.choose);
+
+  const [starIsActive, setStarIsActive] = useState(star);
 
   useEffect(() => {
-    favorites.includes(post.id) ? setIsActive(starActive) : setIsActive(star);
+    favorites.includes(post.id)
+      ? setStarIsActive(starActive)
+      : setStarIsActive(star);
   }, []);
 
-  const handleClick = () => {
+  const handleStarClick = () => {
     dispatch(setToFavorites(post.id));
-    isActive === star ? setIsActive(starActive) : setIsActive(star);
+    starIsActive === star ? setStarIsActive(starActive) : setStarIsActive(star);
+  };
+
+  const handlePostCheckboxClick = () => {
+    dispatch(setPostChecked(post.id));
   };
 
   return (
@@ -40,12 +49,13 @@ function Post({ post, setPostIsChecked, postIsChecked }) {
           </p>
         </div>
         <input
+          className={styles.post_checkbox}
           type="checkbox"
           name="post_checkbox"
           id="post_checkbox"
           value="post_checkbox"
-          checked={postIsChecked}
-          onClick={(e) => e.target.checked ? setPostIsChecked(true) : setPostIsChecked(false)}
+          onChange={handlePostCheckboxClick}
+          checked={choose.postsChecked.includes(post.id)}
         />
       </div>
       <h3 className={`${fontStyles.bold} ${styles.post_title}`}>
@@ -59,26 +69,29 @@ function Post({ post, setPostIsChecked, postIsChecked }) {
         <li>
           <ul className={styles.main_icons_container}>
             <li>
-              <button className={styles.button}>
+              <button className={styles.post_button}>
                 <img src={comments} alt="comments" className={styles.icon} />
               </button>
             </li>
             <li>
-              <button className={styles.button}>
+              <button className={styles.post_button}>
                 <img src={edit} alt="edit" className={styles.icon} />
               </button>
             </li>
             <li>
-              <button className={styles.button}>
+              <button className={styles.post_button}>
                 <img src={trash} alt="trash" className={styles.icon} />
               </button>
             </li>
           </ul>
         </li>
         <li>
-          <button className={styles.button} onClick={handleClick}>
+          <button
+            className={`${styles.post_button} ${styles.favotites_button}`}
+            onClick={handleStarClick}
+          >
             <img
-              src={isActive}
+              src={starIsActive}
               // {isHovered ? starInactiveHover : starInactive}
               // onMouseEnter={handleHover}
               // onMouseLeave={handleHover}

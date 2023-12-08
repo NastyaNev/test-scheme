@@ -24,8 +24,8 @@ function Filters({ setPostsArray, posts, setCurrentPage, postsArray }) {
         }
       });
     } else {
-        setPostsArray(posts);
-        setCurrentPage(1);
+      setPostsArray(posts);
+      setCurrentPage(1);
     }
   };
 
@@ -35,7 +35,11 @@ function Filters({ setPostsArray, posts, setCurrentPage, postsArray }) {
         filter by:
       </p>
       <ul className={styles.filters}>
-        <NameFilter postsArray={postsArray} setPostsArray={setPostsArray} posts={posts} />
+        <NameFilter
+          postsArray={postsArray}
+          setPostsArray={setPostsArray}
+          posts={posts}
+        />
         <li>
           <input
             className={fontStyles.regular}

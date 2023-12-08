@@ -9,6 +9,7 @@
     align-items: center;
     gap: 8px;
     z-index: 2;
+    line-height: 25px;
 }
 
 .choose_label {
@@ -30,6 +31,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    height: 25px;
 }
 
 .hidden_buttons_container_inactive {
@@ -37,6 +39,24 @@
 }
 
 .hidden_button {
+    display: flex;
     color: black;
     text-decoration: none;
+    transition: color 0.5s ease;
+    line-height: 25px;
+}
+
+.hidden_button:hover {
+    color: #4ca1af;
+}
+
+.hidden_button_active {
+    border-bottom: 2px solid #4ca1af;
+}
+
+@media (max-width: 450px) {
+    .choose_container {
+        flex-direction: column;
+        gap: 10px;
+    }
 }

@@ -9,10 +9,18 @@ function Sort() {
         sort by:
       </p>
       <ul className={styles.sort}>
-        <li><button className={fontStyles.regular}>Id</button></li>
-        <li><button className={fontStyles.regular}>Title</button></li>
-        <li><button className={fontStyles.regular}>User name</button></li>
-        <li><button className={fontStyles.regular}>Favorite</button></li>
+        <li>
+          <button className={fontStyles.regular}>Id</button>
+        </li>
+        <li>
+          <button className={fontStyles.regular}>Title</button>
+        </li>
+        <li>
+          <button className={fontStyles.regular}>User name</button>
+        </li>
+        <li>
+          <button className={fontStyles.regular}>Favorite</button>
+        </li>
       </ul>
     </li>
   );

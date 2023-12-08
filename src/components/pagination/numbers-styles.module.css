@@ -22,7 +22,6 @@
 
 .number {
     display: flex;
-    line-height: 20px;
     cursor: pointer;
     transition: color 0.5s ease;
     text-decoration: none;

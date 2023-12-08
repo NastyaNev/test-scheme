@@ -3,7 +3,6 @@ import Header from "../header/header";
 import Sort from "../sort/sort";
 import Filters from "../filters/filters";
 import styles from "./app.module.css";
-import fontStyles from "../../fonts/fonts.module.css";
 import { useDispatch } from "react-redux";
 import { getItems, getNames } from "../../services/actions/actions";
 import { useSelector } from "react-redux";
@@ -19,7 +18,6 @@ function App() {
   const [postsArray, setPostsArray] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
-  const [postIsChecked, setPostIsChecked] = useState(false);
 
   useEffect(() => {
     dispatch(getNames());
@@ -73,7 +71,7 @@ function App() {
           <Sort />
         </ul>
         <div className={styles.choose_line_container}>
-          <ChooseAll setPostIsChecked={setPostIsChecked} />
+          <ChooseAll postsArray={postsArray} />
           <Pagination
             postsPerPage={actualPostsPerPage}
             totalPosts={postsArray.length}
@@ -88,7 +86,7 @@ function App() {
             paginate={paginate}
           />
         </div>
-        <Posts posts={currentPosts} setPostIsChecked={setPostIsChecked} postIsChecked={postIsChecked} />
+        <Posts posts={currentPosts} />
       </main>
     </div>
   );

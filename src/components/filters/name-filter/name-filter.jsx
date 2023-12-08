@@ -13,7 +13,7 @@ function NameFilter({ posts, postsArray, setPostsArray }) {
       setPostsArray(posts);
       setOpen(false);
     } else {
-      const user = users.find((u) => u.name === e.target.textContent); 
+      const user = users.find((u) => u.name === e.target.textContent);
       const filteredByName = postsArray.filter((i) => i.userId === user.id);
       setPostsArray(filteredByName);
       setOpen(false);
