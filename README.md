@@ -1,6 +1,6 @@
 <p align="center">
-  <h2>Gimme post</h2>
-  <h3>Тестовое задание для Доктор24 и Сарафан (доставка продктов).</h3>
+  <h2 align="center">Gimme post</h2>
+  <h3 align="center">Тестовое задание для Доктор24 и Сарафан (доставка продктов).</h3>
   <h4 align="center" >Demo опубликавано на GitHub-pages - <a href="https://nastyanev.github.io/test-posts/index.html" title="Ссылка на GitHub Pages">ссылка</a>.</h4>
   <p align="center" >Не забудьте нажать "Открыть в новой вкладке" :wink: </p>
 </p>
