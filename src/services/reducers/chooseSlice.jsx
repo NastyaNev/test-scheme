@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { set } from "react-hook-form";
 
 export const initialState = {
   allChecked: false,
