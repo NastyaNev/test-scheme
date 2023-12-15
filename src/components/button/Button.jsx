@@ -3,7 +3,7 @@ import "./Button.scss"
 
 function Button({ text }) {
   return (
-    <button>{text}</button>
+    <button onClick={(e) => {e.preventDefault()}}>{text}</button>
   )
 }
 
