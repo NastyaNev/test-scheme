@@ -1,0 +1,22 @@
+.header_link {
+    text-decoration: none;
+    color: #FFFFFF;
+    padding: 6px 3px 3px;
+    transition: all 0.2s ease-in-out;
+
+    &__active {
+        border-radius: 8px;
+        background-color: #414141;
+        box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.25)
+    }
+
+    &:hover {
+        border-radius: 8px;
+        background-color: #414141;
+        box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    }
+
+    &:active {
+        color: #292424;
+    }
+}

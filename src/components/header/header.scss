@@ -1,0 +1,49 @@
+.header {
+    background-color: #292424;
+    position: fixed;
+    padding: 24px 80px 72px;
+    right: 0;
+    left: 0;
+
+    &__content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        position: relative;
+
+        &__links_container {
+            position: absolute;
+            left: 0;
+            right: 0;
+            justify-content: center;
+            display: flex;
+
+            &__links {
+                padding: 7px 14% 9px;
+                min-width: 300px;
+                background-color: #343333;
+                display: flex;
+                gap: 34px;
+                text-transform: uppercase;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 19.36px;
+                border-radius: 8px;
+            }
+        }
+
+        &__logo {
+            z-index: 1;
+            transition: opacity 0.2s ease-in-out;
+            max-height: 103px;
+
+            &:hover {
+                opacity: 0.8;
+            }
+
+            &:active {
+                opacity: 0.5;
+            }
+        }
+    }
+}
