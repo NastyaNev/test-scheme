@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import PageTitle from "../../components/page-title/PageTitle";
+import SliderForm from "../../components/slider-form/SliderForm";
 
 function Calibration() {
   return (
-    <div>Calibration</div>
-  )
+    <>
+      <PageTitle title="калибровка" />
+      <SliderForm />
+    </>
+  );
 }
 
-export default Calibration
+export default Calibration;

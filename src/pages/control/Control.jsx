@@ -1,8 +1,16 @@
-import React from 'react'
+import React from 'react';
+import './Control.scss'
 
 function Control() {
   return (
-    <div>Control</div>
+    <div class='control'>
+      <div class="d_pads">
+
+      </div>
+      <div class="sliders">
+
+      </div>
+    </div>
   )
 }
 
