@@ -1,7 +1,7 @@
 import React from 'react';
 import "./Button.scss"
 
-function Button({ text }) {
+function Button({ text, className }) {
   return (
     <button onClick={(e) => {e.preventDefault()}}>{text}</button>
   )

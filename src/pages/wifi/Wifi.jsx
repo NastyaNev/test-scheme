@@ -6,7 +6,7 @@ import PageTitle from "../../components/page-title/PageTitle";
 function Wifi() {
   return (
     <div className='wifi_page'>
-      <PageTitle title="настройка wi-fi" />
+      <PageTitle title="настройка wi-fi" className="wifi_page__title" />
       <Outlet />
     </div>
   );
